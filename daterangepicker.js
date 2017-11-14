@@ -1127,6 +1127,7 @@
         },
 
         hide: function(e) {
+            var that = this;
             if (!this.isShowing) return;
 
             //incomplete date selection, revert to last values
