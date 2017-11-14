@@ -1144,9 +1144,19 @@
 
             $(document).off('.daterangepicker');
             $(window).off('.daterangepicker');
-            this.container.hide();
-            this.element.trigger('hide.daterangepicker', this);
-            this.isShowing = false;
+            this.__HideCallback = false;
+            this.element.trigger('beforeHide.daterangepicker', this);
+            if(this.__HideCallback){
+                this.__HideCallback = function(){
+                    that.container.hide();
+                    that.element.trigger('hide.daterangepicker', that);
+                    that.isShowing = false;
+                }
+            }else{
+                this.container.hide();
+                this.element.trigger('hide.daterangepicker', that);
+                this.isShowing = false;
+            }
         },
 
         toggle: function(e) {
